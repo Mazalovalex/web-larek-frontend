@@ -14,14 +14,9 @@ interface IProductList {
 	items: IProduct[];
 }
 
-// Позиция в корзине (CartItem) — объект
-interface ICartItem {
-	product: IProduct;
-}
-
 // Корзина (Cart) — коллекция
 interface ICart {
-	items: ICartItem[];
+	items: IProduct[];
 }
 
 // Тип ProductId — это тип поля "id" из интерфейса IProduct.
@@ -47,5 +42,5 @@ interface IOrderResponse {
 enum ErrorType {
 	NoAddress = 'No address',
 	WrongTotal = 'Wrong total',
-	ProductNotFound = 'Product not found'
+	ProductNotFound = 'Product not found',
 }
