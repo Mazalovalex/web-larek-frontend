@@ -468,6 +468,8 @@ Presenter получает результат и обновляет интерф
    - get(uri: string): Promise<object> — выполняет GET-запрос по указанному пути.
    - post(uri: string, data: object, method: ApiPostMethods = 'POST'): Promise<object> — отправляет данные на сервер с указанным HTTP-методом (POST, PUT или DELETE).
 
+--
+
 2. EVENTS (src/components/events.ts) - События между частями приложения
    **Назначение**:
    Позволяет разным частям приложения взаимодействовать друг с другом через события.
