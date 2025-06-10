@@ -1,46 +1,44 @@
-// Товар (Product) — объект
-interface IProduct {
-	id: number;
+export interface IProduct {
+	id: string;
 	title: string;
-	description: string;
-	image: string;
 	category: string;
-	price: number | null; // null если товар недоступен
+	description?: string;
+	image: string;
+	price: number | null;
 }
 
-// Список товаров (ProductList) — коллекция
-interface IProductList {
-	total: number;
-	items: IProduct[];
-}
+export type IBasketItem = {
+	index: number;
+	id: string;
+	title: string;
+	price: number | null;
+};
 
-// Корзина (Cart) — коллекция
-interface ICart {
-	items: IProduct[];
-}
-
-// Тип ProductId — это тип поля "id" из интерфейса IProduct.
-type ProductId = IProduct['id'];
-
-// Заказ (Order) — объект
-interface IOrder {
-	items: ProductId[];
-	total: number;
+export interface IOrderForm {
+	payment: string;
 	address: string;
-	payment: 'Онлайн' | 'При получении';
+}
+
+export interface IContactsForm {
 	email: string;
 	phone: string;
 }
 
-// Ответ на заказ (OrderResponse) — объект
-interface IOrderResponse {
-	id: number;
+export interface IForm extends IOrderForm, IContactsForm {}
+
+export interface IOrder extends IForm {
 	total: number;
+	items: string[];
 }
 
-//Ошибки (Errors) — объекты
-enum ErrorType {
-	NoAddress = 'No address',
-	WrongTotal = 'Wrong total',
-	ProductNotFound = 'Product not found',
+export type FormErrors = Partial<Record<keyof IOrder, string>>;
+
+export interface IOrderResult {
+	id: string;
+}
+
+export interface IShop {
+	catalog: IProduct[];
+	basket: string[];
+	order: IOrder | null;
 }
