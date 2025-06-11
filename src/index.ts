@@ -100,6 +100,7 @@ events.on('card:select', (item: IProduct) => {
 			image: item.image,
 			price: item.price,
 			category: item.category,
+			description: item.description,
 		}),
 	});
 });

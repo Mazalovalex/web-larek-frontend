@@ -30,7 +30,7 @@ export class Card<T> extends Component<ICard<T>> {
 		this._title = ensureElement<HTMLElement>(`.card__title`, container);
 		this._image = container.querySelector(`.card__image`);
 		this._button = container.querySelector(`.card__button`);
-		this._description = container.querySelector(`.card__description`);
+		this._description = container.querySelector(`.card__text`);
 		this._price = ensureElement<HTMLElement>(`.card__price`, container);
 		this._category = container.querySelector(`.card__category`);
 		this._index = container.querySelector(`.basket__item-index`);
