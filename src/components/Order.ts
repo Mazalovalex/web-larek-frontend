@@ -33,6 +33,11 @@ export class Order extends Form<IOrderForm> {
 				value: 'офлайн',
 			})
 		);
+
+		this.container.addEventListener('submit', (e) => {
+			e.preventDefault();
+			this.events.emit('order:submit');
+		});
 	}
 
 	set payment(value: string) {

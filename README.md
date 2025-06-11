@@ -176,23 +176,8 @@ constructor(cdn: string, baseUrl: string, options?: RequestInit) {
 
 ## Модели данных
 
-### 1. Класс Product.
 
-Класс для описания товара, который переиспользуется в каталоге, превью и корзине. Наследует класс Model<T>. Работает в соответствии с интерфейсом IProduct. Содержит поля для хранения данных о товаре:
-
-```
-class Product extends Model<IProduct> {
-    description: string; // описание товара
-    id: string; // айди
-    image: string; // ссылка на картинку
-    title: string; // название товара
-    category: string; // категория
-    price: number | null; // цена
-    index: number; // индекс в корзине
-}
-```
-
-### 2. Класс ShopModel.
+### 1. Класс ShopModel.
 
 Описывает всю бизнес-логику интернет магазина. Наследует класс Model<T>. Работает в соответствии с интерфейсом IFormState. Содержит поля для хранения данных хранящихся на странице:
 

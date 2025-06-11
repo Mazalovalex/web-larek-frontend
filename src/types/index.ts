@@ -7,12 +7,9 @@ export interface IProduct {
 	price: number | null;
 }
 
-export type IBasketItem = {
-	index: number;
-	id: string;
-	title: string;
-	price: number | null;
-};
+export interface IBasketItem extends IProduct {
+  index: number;
+}
 
 export interface IOrderForm {
 	payment: string;
@@ -27,8 +24,8 @@ export interface IContactsForm {
 export interface IForm extends IOrderForm, IContactsForm {}
 
 export interface IOrder extends IForm {
-	total: number;
-	items: string[];
+	total?: number;
+	items?: string[];
 }
 
 export type FormErrors = Partial<Record<keyof IOrder, string>>;

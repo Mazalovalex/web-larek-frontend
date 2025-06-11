@@ -1,33 +1,14 @@
 import { Model } from './base/Model';
-import {
-	IProduct,
-	FormErrors,
-	IShop,
-	IBasketItem,
-	IOrder,
-	IForm,
-} from '../types';
-
-export class Product extends Model<IProduct> {
-	description: string;
-	id: string;
-	image: string;
-	title: string;
-	category: string;
-	price: number | null;
-	index: number;
-}
+import { IProduct, FormErrors, IShop, IOrder, IForm } from '../types';
 
 export class ShopModel extends Model<IShop> {
 	basket: string[] = [];
-	catalog: Product[];
+	catalog: IProduct[] = []; 
 	order: IOrder = {
 		payment: '',
 		address: '',
 		email: '',
 		phone: '',
-		total: 0,
-		items: [],
 	};
 	formErrors: FormErrors = {};
 
@@ -53,24 +34,23 @@ export class ShopModel extends Model<IShop> {
 		this.order.address = '';
 		this.order.email = '';
 		this.order.phone = '';
-		this.order.total = 0;
-		this.order.items = [];
 	}
 
 	getTotal() {
 		return this.basket.reduce(
-			(a, c) => a + this.catalog.find((it) => it.id === c).price,
+			(a, c) => a + (this.catalog.find((it) => it.id === c)?.price ?? 0),
 			0
 		);
 	}
 
 	setCatalog(items: IProduct[]) {
-		this.catalog = items.map((item) => new Product(item, this.events));
+		this.catalog = items; 
 		this.emitChanges('items:render', { catalog: this.catalog });
 	}
 
 	setOrderField(field: keyof IForm, value: string) {
 		this.order[field] = value;
+		this.events.emit('order:changed', this.order);
 
 		if (this.validateOrder()) {
 			this.events.emit('order:ready', this.order);
@@ -100,3 +80,5 @@ export class ShopModel extends Model<IShop> {
 		return Object.keys(errors).length === 0;
 	}
 }
+
+
